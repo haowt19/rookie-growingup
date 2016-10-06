@@ -3,9 +3,8 @@
 
 <log4j:configuration>
 	<root>
-		<priority value="trace" />
+		<priority value="info" />
 		<appender-ref ref="console"/>
-		<appender-ref ref="spring-mvc-log"/>
 	</root>
 
 	
