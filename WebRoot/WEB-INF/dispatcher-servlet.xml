@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <description>前端控制器配置文件</description>
+    
+    <!-- 文件上传解析器 -->
+    <!-- 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="204800"/>
+    </bean>
+     -->
+    
+    <!-- 
+    	1：org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver  默认值。
+    	它通过检验HTTP请求的accept-language头部来解析区域。这个头部是由用户的web浏览器根据底层操作系统的区域设置进行设定。请注意，这个区域解析器无法改变用户的区域，因为它无法修改用户操作系统的区域设置。
+    	2：org.springframework.web.servlet.i18n.SessionLocaleResolver
+    	它通过检验用户会话中预置的属性来解析区域。如果该会话属性不存在，它会根据accept-language HTTP头部确定默认区域
+    	3：org.springframework.web.servlet.i18n.CookieLocaleResolver
+    	检验用户浏览器中的Cookie，用CookieLocaleResolver来解析区域。如果Cookie不存在，它会根据accept-language HTTP头部确定默认区域。
+    	4：org.springframework.web.servlet.i18n.FixedLocaleResolver
+    	一直使用固定的Local, 改变Local 是不支持的 。
+     -->
+    <!-- 区域解析器 -->
+    <!-- 
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver">
+    	<property name="defaultLocale" value="en"/>
+	</bean>
+	 -->
+	
+	
+	<!-- 
+		用法对应连接：http://blog.csdn.net/wutbiao/article/details/7450281
+		1：org.springframework.web.servlet.theme.FixedThemeResolver 
+		选择一个固定的主题，通过defaultThemeName属性设定
+		2：org.springframework.web.servlet.theme.SessionThemeResolver 
+		主题在用户的session中被管理，一个session只需设置一次，但不会被持久化
+		3：org.springframework.web.servlet.theme.CookieThemeResolver 
+		主题选择被存储在客户端的cookie中
+	 -->
+	<!-- 主题解析器 -->
+	<!-- 
+	<bean id="themeResolver" class="org.springframework.web.servlet.theme.FixedThemeResolver">
+		<property name="defaultThemeName" value="theme"/>
+	</bean>
+	 -->
+	<!-- 将请求映射到控制器 -->
+	<!-- 
+		1：org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
+		2：org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
+		3：org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping
+		4：org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+		5：org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping
+		6：org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping
+	 -->
+	 <!-- 将请求映射到控制器 
+	<bean id="handlerMappings" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/> 
+	     接收请求规则 
+	    <bean name="homePageController" class="com.spring.mvc.controller.HomePageController">
+	    		<property name="rantService" ref="rantService"/>
+	    </bean>
+	    
+	    <bean name="subHomePageController" class="com.spring.mvc.controller.SubHomePageController">
+	    		<property name="rantService" ref="rantService"/>
+	    </bean>
+	-->
+	<!-- 
+		1：org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter
+		2：org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter
+		3：org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
+		4：org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
+	 
+	<bean id="handlerAdapters" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	-->
+    <!-- 返回请求规则 -->
+     
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    		<property name="prefix">
+    				<value>/WEB-INF/jsp/</value>
+    		</property>
+    		<property name="suffix">
+    				<value>.jsp</value>
+    		</property>
+    </bean>
+
+	<import resource="/springConf/springmvc-controller.xml"/>
+	
+</beans>

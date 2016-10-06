@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"> 
+        
+        
+    <context:property-placeholder location="classpath:env.properties"/>
+    
+    <bean id="userDao" class="com.spring.redis.dao.impl.UserDaoImpl">
+    	<property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+    
+    <bean id="orderDao" class="com.spring.redis.dao.impl.OrderDaoImpl">
+    	<property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+    
+    <!-- jedis pool配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+     	<!--最大连接数-->
+        <property name="maxActive" value="${redis.maxActive}" />
+        <!--最大空闲数-->
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <!--最大建立连接等待时间-->
+        <property name="maxWait" value="${redis.maxWait}" />
+        <!--对拿到的connection进行validateObject校验-->
+        <property name="testOnBorrow" value="true" />
+	    <!--在进行returnObject对返回的connection进行validateObject校验-->
+	    <property name="testOnReturn" value="true" />
+	    <!--定时对线程池中空闲的链接进行validateObject校验-->
+	    <property name="testWhileIdle" value="true" />
+    </bean>
+    
+    
+    <bean id="jedisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+    	<property name="hostName"><value>${redis.host}</value></property>
+    	<property name="port"><value>${redis.port}</value></property>
+    	<!-- 
+    	<property name="password"><value>${redis.password}</value></property>
+    	 -->
+    	<property name="timeout" value="${redis.timeout}"/>
+    	<constructor-arg index="0" ref="jedisPoolConfig"/>
+    </bean>
+    
+    <bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnFactory"/>
+		<property name="keySerializer" ref="stringRedisSerializer"/>
+		<property name="hashKeySerializer" ref="stringRedisSerializer"/>
+	</bean>
+	
+	<bean id="jedis" class="redis.clients.jedis.Jedis">
+		<constructor-arg name="hostName" index="0" type="java.lang.String" value="127.0.0.1"/>
+		<constructor-arg name="port" index="1" type="java.lang.Integer" value="6379"/>
+		<constructor-arg name="timeout" index="2" type="java.lang.Integer" value="100000"/>
+	</bean>
+</beans>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+	<root>
+		<priority value="trace" />
+		<appender-ref ref="console"/>
+		<appender-ref ref="spring-mvc-log"/>
+	</root>
+
+	
+
+	<!-- 控制台 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p: %c#%M %x: %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 每天产生一个文件 -->
+	<appender name="spring-mvc-log" class="org.apache.log4j.DailyRollingFileAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p: %c#%M %x: %m%n" />
+		</layout>
+		<param name="File" value="D://logs/springmvc.log"/>
+	</appender>
+	
+	
+	<!-- 文件 -->
+	<appender name="file" class="org.apache.log4j.FileAppender">
+	
+	</appender>
+	 
+	<!-- 文件大小到达一定尺寸时生成新文件 -->
+	<appender name="rollingFile" class="org.apache.log4j.RollingFileAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p: %c#%M %x: %m%n" />
+		</layout>
+		<param name="File" value="logs/springmvc.log" />
+		<param name="maxFileSize" value="2000KB" />
+		<param name="File" value="logs/springmvc.log" />
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">  
+                        <param name="LevelMax" value="DEBUG" />  
+                        <param name="LevelMin" value="DEBUG" />  
+        </filter>
+	</appender>
+	
+	<!-- 将日志信息以流格式发送到任意指定的地方  -->
+	<appender name="writer" class="org.apache.log4j.WriterAppender">
+	
+	</appender>
+	
+	
+	
+</log4j:configuration>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"> 
+    
+    <!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${dataSourceMaster.jdbc.driverClassName}" />
+        <property name="url" value="${dataSourceMaster.jdbc.url}" />
+        <property name="username" value="${dataSourceMaster.jdbc.username}" />
+        <property name="password" value="${dataSourceMaster.jdbc.password}" />
+        <property name="defaultAutoCommit" value="false" />
+        
+        <property name="initialSize" value="${dataSourceMaster.dbcp.initialSize}" />
+        <property name="maxActive" value="${dataSourceMaster.dbcp.maxActive}" />
+        <property name="maxWait" value="${dataSourceMaster.dbcp.maxWait}" />
+        <property name="maxIdle" value="${dataSourceMaster.dbcp.maxIdle}" />
+        <property name="minIdle" value="${dataSourceMaster.dbcp.minIdle}" />
+        
+        <!-- 检证连接有效性 -->
+        <property name="testOnBorrow" value="true"/>
+	 	<property name="testWhileIdle" value="true"/>
+		<property name="validationQuery" value="select 1 from dual"/>
+	</bean>
+	
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
+	<!-- 事务管理配置规则 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" isolation="DEFAULT" propagation="SUPPORTS" read-only="true" timeout="-1" rollback-for="java.lang.Exception" no-rollback-for=""/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 利用切面配置事务管理 -->
+	<aop:config>
+		<aop:advisor pointcut="@within(org.springframework.stereotype.Service)" advice-ref="transactionAdvice"/>
+	</aop:config>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+</beans>
