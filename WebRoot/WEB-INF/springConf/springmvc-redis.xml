@@ -11,8 +11,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"> 
         
         
-    <context:property-placeholder location="classpath:env.properties"/>
-    
     <bean id="userDao" class="com.spring.redis.dao.impl.UserDaoImpl">
     	<property name="redisTemplate" ref="redisTemplate"/>
     </bean>

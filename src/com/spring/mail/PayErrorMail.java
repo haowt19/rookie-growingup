@@ -12,9 +12,9 @@ public class PayErrorMail {
 	
 	
 	@Test
-	public static void sendErrorMail() {
+	public void sendErrorMail() {
 		
-		String path="WebRoot/WEB-INF/springConf/springmvc-mail.xml"; 
+		String path="src/com/spring/mail/springmvc-mail.xml"; 
 		ApplicationContext context = new FileSystemXmlApplicationContext(path);
 		MailSender mailSender = (MailSender)context.getBean("mailSender");
 		
