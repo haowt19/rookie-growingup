@@ -19,7 +19,6 @@ public class AudienceAdvice  implements
 	
 	private static final Logger logger = Logger.getLogger(Audience.class);
 	
-	
 	private Audience audience;
 	
 	

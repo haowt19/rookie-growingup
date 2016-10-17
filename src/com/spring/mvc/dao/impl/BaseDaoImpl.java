@@ -24,7 +24,6 @@ public class BaseDaoImpl<T> extends JdbcDaoSupport implements IBaseDao<T>{
 	@Override
 	public void delete(T entity) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -33,4 +32,5 @@ public class BaseDaoImpl<T> extends JdbcDaoSupport implements IBaseDao<T>{
 		return null;
 	}
 
+	
 }

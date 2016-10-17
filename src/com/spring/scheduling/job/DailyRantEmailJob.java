@@ -8,13 +8,18 @@ import com.spring.mail.PayErrorMail;
 
 public class DailyRantEmailJob extends QuartzJobBean{
 
+	private PayErrorMail payErrorMail;
+	
+	
 	@Override
 	protected void executeInternal(JobExecutionContext context)
 			throws JobExecutionException {
-		PayErrorMail.sendErrorMail();
+		payErrorMail.sendErrorMail();
+	}
+
+
+	public void setPayErrorMail(PayErrorMail payErrorMail) {
+		this.payErrorMail = payErrorMail;
 	}
 	
-	
-	
-
 }

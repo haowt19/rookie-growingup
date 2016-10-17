@@ -38,7 +38,7 @@ public class OrderListTest {
 		redisTemplate = (RedisTemplate<String, ?>)context.getBean("redisTemplate");
 		orderDao = (IOrderDao) context.getBean("orderDao");
 		
-		
+		valueOperations();
 		
 	}
 	
