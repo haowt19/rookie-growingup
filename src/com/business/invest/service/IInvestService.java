@@ -1,4 +1,4 @@
-package com.xhh.invest.service;
+package com.business.invest.service;
 
 public interface IInvestService {
 

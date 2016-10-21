@@ -1,6 +1,6 @@
-package com.xhh.invest.service.impl;
+package com.business.invest.service.impl;
 
-import com.xhh.invest.service.IInvestService;
+import com.business.invest.service.IInvestService;
 
 public class InvestServiceImpl implements IInvestService{
 
