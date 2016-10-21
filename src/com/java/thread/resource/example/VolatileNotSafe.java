@@ -10,30 +10,33 @@ import java.util.concurrent.TimeUnit;
 public class VolatileNotSafe {
 	private volatile static int count = 0;
 	
-	public static int increase() {
+	public synchronized static int increase() {
 		
 		try {
-			TimeUnit.MILLISECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return count++;
+		return ++count;
 	}
+	
+	public synchronized static int getCount() {
+		return count;
+	}
+	
 	
 	public static void main(String[] args) {
 		for (int i=0; i< 1000; i++) {
 			new Thread(new Runnable(){
 				
 				public void run() {
-					VolatileNotSafe.increase();
+					System.out.println("此时加总的结果为："+ VolatileNotSafe.increase());
 				}
 				
 			}).start();
 		}
-		
-		System.out.println("最后加总的结果为："+VolatileNotSafe.count);
 	}
 	
 }
