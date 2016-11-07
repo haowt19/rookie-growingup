@@ -1,4 +1,4 @@
-package com.java.thread.runnable;
+package com.java.thread.runnable.exception;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

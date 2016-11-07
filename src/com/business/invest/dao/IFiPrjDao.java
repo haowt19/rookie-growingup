@@ -1,6 +1,6 @@
-package com.xhh.invest.dao;
+package com.business.invest.dao;
 
-import com.xhh.invest.entity.FiPrj;
+import com.business.invest.entity.FiPrj;
 
 public interface IFiPrjDao {
 	

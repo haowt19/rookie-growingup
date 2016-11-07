@@ -1,13 +1,13 @@
-package com.xhh.invest.dao.impl;
+package com.business.invest.dao.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
-import com.xhh.invest.dao.IFiPrjDao;
-import com.xhh.invest.entity.FiPrj;
+import com.business.invest.entity.FiPrj;
 
-public class FiPrjDaoImpl implements IFiPrjDao{
+
+public class FiPrjDaoImpl implements com.business.invest.dao.IFiPrjDao{
 	
 	@Resource
 	private HibernateTemplate template;

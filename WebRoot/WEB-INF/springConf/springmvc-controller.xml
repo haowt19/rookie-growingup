@@ -13,4 +13,17 @@
     
     <context:component-scan base-package="com.spring.mvc.controller" />
     
+    
+    <!-- ===========利用SimpleControllerHandlerAdapter类型来调用处理器方法=========== -->
+    <bean id="/homePage.htm"  class="com.spring.mvc.controller.HomePageController">
+    		<property name="methodNameResolver">
+    				<ref local="methodNameResolver"/>
+    		</property>
+    </bean>
+    
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    		<property name="paramName" value="m"/>
+    		<property name="defaultMethodName" value="handleRequest"/>
+    </bean>
+    
 </beans>

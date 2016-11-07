@@ -1,4 +1,4 @@
-package com.xhh.invest.entity;
+package com.business.invest.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;

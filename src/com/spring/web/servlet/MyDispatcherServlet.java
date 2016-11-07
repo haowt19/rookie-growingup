@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeansException;
@@ -76,6 +77,11 @@ public class MyDispatcherServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	
+	private static final Logger logger = Logger.getLogger(MyDispatcherServlet.class);
+	
+	
 
 	/**
 	 * Suffix for WebApplicationContext namespaces. If a servlet of this class is
@@ -245,6 +251,9 @@ public class MyDispatcherServlet extends HttpServlet{
 		try {
 			ClassPathResource resource = new ClassPathResource(DEFAULT_STRATEGIES_PATH, DispatcherServlet.class);
 			defaultStrategies = PropertiesLoaderUtils.loadProperties(resource);
+			logger.info("======================默认的DispatcherServlet.properties配置文件内容=========================");
+			logger.info(defaultStrategies);
+			logger.info("===============================================");
 		} catch (IOException ex) {
 			throw new IllegalStateException("Could not load 'DispatcherServlet.properties': " + ex.getMessage());
 		}
@@ -515,8 +524,8 @@ public class MyDispatcherServlet extends HttpServlet{
 			Exception dispatchException = null;
 			
 			try {
-//				processRequest = checkMultipart(requset);
 //				multipartRequestParsed = (processRequest != request);
+//				processRequest = checkMultipart(requset);
 				
 				//为当前的请求确定处理器
 				mappedHandler = getHandler(processedRequest);

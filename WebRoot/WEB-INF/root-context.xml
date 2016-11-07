@@ -13,9 +13,9 @@
     
     
     <context:property-placeholder location="classpath:env.properties"/>
-    
+
     <import resource="springConf/springmvc-database.xml"/>
-    
+     
     <import resource="springConf/springmvc-dao.xml"/>
     
     <import resource="springConf/springmvc-service.xml"/>
@@ -23,5 +23,4 @@
     <import resource="springConf/springmvc-activemq.xml"/>
     
     <import resource="springConf/springmvc-mail.xml"/>
-
 </beans>
