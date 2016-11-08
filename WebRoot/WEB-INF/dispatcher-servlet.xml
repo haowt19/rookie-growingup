@@ -21,6 +21,11 @@
     				<value>.jsp</value>
     		</property>
     </bean>
+    
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    		<property name="paramName" value="m"/>
+    		<property name="defaultMethodName" value="handleRequest"/>
+    </bean>
 
 	<import resource="springConf/springmvc-controller.xml"/>
 	

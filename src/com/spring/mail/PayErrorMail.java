@@ -19,7 +19,7 @@ public class PayErrorMail {
 		MailSender mailSender = (MailSender)context.getBean("mailSender");
 		
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("ubsp@upg.cn");
+		message.setFrom("hwt_19@163.com");
 		message.setTo("haowentao@upg.cn");
 		message.setText("this is a test mail message");
 		message.setSubject("Test Mail Sender");
