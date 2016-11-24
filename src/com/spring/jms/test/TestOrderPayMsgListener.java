@@ -1,4 +1,4 @@
-package test.spring.jms.listener;
+package com.spring.jms.test;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
