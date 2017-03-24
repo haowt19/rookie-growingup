@@ -1,4 +1,4 @@
-package com.xhh.framework.bean.util;
+package com.util;
 
 import java.lang.reflect.Type;
 

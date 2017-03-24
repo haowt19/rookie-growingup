@@ -16,7 +16,7 @@ public class JoinThreadTest implements Runnable{
 		
 		try {
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("çº¿ç¨‹"+name+"æ‰§è¡Œå®Œæ¯•");
+			System.out.println("Ïß³Ì"+name+"ÕýÔÚÖ´ÐÐ");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,6 +35,6 @@ public class JoinThreadTest implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("ä¸»çº¿ç¨‹æ‰§è¡Œå®Œæ¯•");
+		System.out.println("Ö÷Ïß³ÌÖ´ÐÐÍê±Ï");
 	}
 }
