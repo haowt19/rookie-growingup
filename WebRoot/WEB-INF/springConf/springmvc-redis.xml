@@ -55,9 +55,5 @@
 		<property name="hashKeySerializer" ref="stringRedisSerializer"/>
 	</bean>
 	
-	<bean id="jedis" class="redis.clients.jedis.Jedis" autowire="byName">
-		<constructor-arg name="hostName" index="0" type="java.lang.String" value="127.0.0.1"/>
-		<constructor-arg name="port" index="1" type="java.lang.Integer" value="6379"/>
-		<constructor-arg name="timeout" index="2" type="java.lang.Integer" value="100000"/>
-	</bean>
+	
 </beans>
