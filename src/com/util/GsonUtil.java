@@ -32,12 +32,12 @@ public class GsonUtil {
     
     
     public static void main(String[] args) {
-    	List<String> solution =  new LinkedList<String>();
-		for (int i=0;i<3;i++) {
-			solution.add(0, i+"");
-		}
-		for (int i=0;i<solution.size();i++) {
-			System.out.println(solution);
+//    	List<String> solution =  new LinkedList<String>();
+//		for (int i=0;i<3;i++) {
+//			solution.add(0, i+"");
+//		}
+		for (;;) {
+			System.out.println("ss");
 		}
 		
     }

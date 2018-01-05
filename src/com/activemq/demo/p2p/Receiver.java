@@ -26,7 +26,7 @@ public class Receiver {
 	        connectionFactory = new ActiveMQConnectionFactory(  
 	                ActiveMQConnection.DEFAULT_USER,  
 	                ActiveMQConnection.DEFAULT_PASSWORD,  
-	                "tcp://localhost:61616");  
+	                "tcp://localhost:61618");  
 	        try {  
 	            //得到连接对象  
 	            connection =connectionFactory.createConnection();  
